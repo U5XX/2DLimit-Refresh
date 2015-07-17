@@ -1,0 +1,58 @@
+#define NBR_OF_INPUTS 6
+#include <Console.h>
+
+int digitalInputPins[NBR_OF_INPUTS] = {
+  7, 8, 9, 10, 11, 12};
+
+boolean releasedState[NBR_OF_INPUTS] = {
+  1, 1, 1, 1, 1, 1};
+
+int lastpush[NBR_OF_INPUTS] = {
+  0, 0, 0, 0, 0, 0};
+
+int count = 0;
+long INTERVAL = 20; // was 20
+int THRESHOLD_BUTTON = 20;
+long time = millis();
+int lastPlayerOneBtnOne = 0;
+int lastPlayerOneBtnTwo = 0;
+int lastPlayerTwoBtnOne = 0;
+int lastPlayerTwoBtnTwo = 0;
+
+
+
+void setup() { 
+  Serial.begin(115200);
+  Serial1.begin(115200);
+  for(int i = 0; i < NBR_OF_INPUTS; i++){
+    pinMode(digitalInputPins[i], INPUT_PULLUP);
+  }
+
+  pinMode(13, OUTPUT);
+} 
+
+void loop() { 
+
+  if(millis() - time > INTERVAL){
+    for(int i = 0; i < NBR_OF_INPUTS; i++){
+
+      if(digitalRead(digitalInputPins[i]) == HIGH && (releasedState[i] == false)){
+        digitalWrite(13, HIGH);
+        releasedState[i] = true;
+      }
+
+      if(digitalRead(digitalInputPins[i]) == LOW && (releasedState[i] == true)){
+        releasedState[i] = false;
+        count += 1;
+        Serial.print(count);
+        Serial.print(". Button ");
+        Serial.print(i);
+        Serial.print(" has been pressed. Status: ");
+        Serial.println(releasedState[i]);
+        digitalWrite(13, LOW);
+        Serial1.write(digitalInputPins[i]);
+      }
+    }
+      time = millis();
+  }
+}
