@@ -17,7 +17,7 @@ import se.tothelimit.ToTheLimit;
  */
 public class MainActivity extends AndroidApplication {
 
-    private BluetoothHandler bt;
+//    private BluetoothHandler bt;
     private View decorView;
 
     @Override
@@ -32,21 +32,21 @@ public class MainActivity extends AndroidApplication {
         AndroidApplicationConfiguration cfg = new AndroidApplicationConfiguration();
 //        cfg.useGL20 = true;
 
-        bt = new BluetoothHandler(this);
-        Buffer.init();
+//        bt = new BluetoothHandler(this);
+//        Buffer.init();
         initialize(new ToTheLimit(), cfg);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        bt.checkForBluetooth();
+//        bt.checkForBluetooth();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        bt.stop();
+//        bt.stop();
     }
 
     @Override
