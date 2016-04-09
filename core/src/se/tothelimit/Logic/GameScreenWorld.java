@@ -2,7 +2,9 @@ package se.tothelimit.Logic;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.logging.Logger;
 
+import se.tothelimit.Input.GameScreenTouchInput;
 import se.tothelimit.ToTheLimit;
 import se.tothelimit.Input.Buffer;
 import se.tothelimit.Entities.Bridge;
@@ -14,6 +16,8 @@ import se.tothelimit.Render.GameScreenRenderer;
 import se.tothelimit.Resources.TTLImg;
 import se.tothelimit.Resources.TTLSnd;
 import se.tothelimit.Screens.WinnerScreen;
+import se.tothelimit.Tools.InputHandler;
+import se.tothelimit.Tools.InputListener;
 import se.tothelimit.Tools.KeyboardInput;
 
 import com.badlogic.gdx.Gdx;
@@ -27,7 +31,6 @@ import com.badlogic.gdx.graphics.Texture;
  * 
  */
 public class GameScreenWorld {
-
 	private ToTheLimit game;
 
 	private Player player1;
@@ -57,11 +60,8 @@ public class GameScreenWorld {
 	public GameScreenWorld(ToTheLimit game) {
 		this.game = game;
 		buffer = new ArrayList<Integer>();
-
 		initLevelComponents();
-
-		// Only relevant for the desktop version.
-		Gdx.input.setInputProcessor(new KeyboardInput());
+		Gdx.input.setInputProcessor(new InputHandler(new GameScreenTouchInput()));
 	}
 
 	/**
@@ -353,5 +353,4 @@ public class GameScreenWorld {
 	public Obstacle getObstacle(){
 		return box;
 	}
-
 }
