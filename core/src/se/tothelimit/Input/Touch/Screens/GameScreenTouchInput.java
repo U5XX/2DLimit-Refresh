@@ -1,9 +1,10 @@
-package se.tothelimit.Input;
+package se.tothelimit.Input.Touch.Screens;
 
 import com.badlogic.gdx.Gdx;
 
+import se.tothelimit.Input.Buffer;
+import se.tothelimit.Input.Touch.InputListener;
 import se.tothelimit.ToTheLimit;
-import se.tothelimit.Tools.InputListener;
 
 /**
  * @author Fredrik Andersson <cfredrikandersson@gmail.com>

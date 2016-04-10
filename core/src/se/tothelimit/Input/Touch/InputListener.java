@@ -1,4 +1,4 @@
-package se.tothelimit.Tools;
+package se.tothelimit.Input.Touch;
 
 /**
  * @author Fredrik Andersson <cfredrikandersson@gmail.com>
