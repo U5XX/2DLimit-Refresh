@@ -1,7 +1,10 @@
 package se.tothelimit.Logic;
 
+import com.badlogic.gdx.Gdx;
+
 import java.util.ArrayList;
 
+import se.tothelimit.Input.Touch.Screens.WinnerScreenTouchInput;
 import se.tothelimit.ToTheLimit;
 import se.tothelimit.Input.Buffer;
 import se.tothelimit.Entities.Bridge;
@@ -9,6 +12,7 @@ import se.tothelimit.Entities.Player;
 import se.tothelimit.Resources.TTLImg;
 import se.tothelimit.Resources.TTLSnd;
 import se.tothelimit.Screens.StartScreen;
+import se.tothelimit.Input.Touch.InputHandler;
 
 /**
  * A screen that gets triggered when a player wins. This
@@ -30,7 +34,7 @@ public class WinnerScreenWorld {
 		this.player = player;
 		initPlayer();
 		initBridge();
-
+		Gdx.input.setInputProcessor(new InputHandler(new WinnerScreenTouchInput()));
 		Buffer.clear();
 	}
 

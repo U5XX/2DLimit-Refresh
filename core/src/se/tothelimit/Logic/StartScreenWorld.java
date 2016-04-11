@@ -2,13 +2,14 @@ package se.tothelimit.Logic;
 
 import java.util.ArrayList;
 
+import se.tothelimit.Input.Touch.Screens.StartScreenTouchInput;
 import se.tothelimit.ToTheLimit;
 import se.tothelimit.Input.Buffer;
 import se.tothelimit.Entities.Star;
 import se.tothelimit.Resources.TTLImg;
 import se.tothelimit.Resources.TTLSnd;
 import se.tothelimit.Screens.GameScreen;
-import se.tothelimit.Tools.KeyboardInput;
+import se.tothelimit.Input.Touch.InputHandler;
 
 import com.badlogic.gdx.Gdx;
 
@@ -33,13 +34,9 @@ public class StartScreenWorld {
 	 *            A reference to the main Game class.
 	 */
 	public StartScreenWorld(ToTheLimit game) {
-
 		this.game = game;
 		initLevelComponents();
-
-		// Only relevant for the desktop version.
-		Gdx.input.setInputProcessor(new KeyboardInput());
-		
+		Gdx.input.setInputProcessor(new InputHandler(new StartScreenTouchInput()));
 	}
 
 	private void initLevelComponents() {
